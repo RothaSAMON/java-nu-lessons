@@ -1,21 +1,8 @@
 package Homework;
+
 import java.util.Scanner;
 
-public class first {
-
-    // Task 1: Method to count words in a string
-    public static int countWords(String str) {
-        if (str == null || str.isEmpty()) {
-            return 0;
-        }
-        // Splitting the string by spaces.
-        // The trim() method removes leading and trailing spaces.
-        // The split("\\s+") regex splits the string by one or more whitespace characters.
-        String[] words = str.trim().split("\\s+");
-        return words.length;
-    }
-
-    // Task 2: Calculator Program
+public class Task2 {
 
     // Function to show the menu
     public static void showMenu() {
@@ -64,15 +51,6 @@ public class first {
     }
 
     public static void main(String[] args) {
-        // --- Task 1 Execution ---
-        System.out.println("--- Task 1: Word Count ---");
-        String inputString = "I love Java Programming Language";
-        System.out.println("Input string: " + inputString);
-        int wordCount = countWords(inputString);
-        System.out.println("Number of words in the string: " + wordCount);
-        System.out.println("---------------------------\n");
-
-        // --- Task 2 Execution ---
         System.out.println("--- Task 2: Calculator ---");
         Scanner scanner = new Scanner(System.in);
         char performAnotherOperation;
@@ -97,7 +75,6 @@ public class first {
                 }
             }
 
-
             if (choice == 6) {
                 System.out.println("Exiting calculator. Goodbye!");
                 break;
@@ -120,7 +97,7 @@ public class first {
 
             validInput = false; // Reset for the second number
             // Get second number
-             while (!validInput) {
+            while (!validInput) {
                 System.out.print("Enter the second number: ");
                 if (scanner.hasNextDouble()) {
                     num2 = scanner.nextDouble();
@@ -131,9 +108,8 @@ public class first {
                 }
             }
 
-
             double result = 0;
-            boolean calculationDone = true;
+            boolean calculationDone = true; // Flag to track if a calculation was actually performed
 
             switch (choice) {
                 case 1:
@@ -150,24 +126,26 @@ public class first {
                     break;
                 case 4:
                     result = divide(num1, num2);
-                    if (!Double.isNaN(result)) {
+                    if (!Double.isNaN(result)) { // Check if the result is a valid number
                         System.out.println("The result is " + result);
+                    } else {
+                        calculationDone = false; // Division by zero occurred
                     }
                     break;
                 case 5:
                     result = modulus(num1, num2);
-                     if (!Double.isNaN(result)) {
+                    if (!Double.isNaN(result)) { // Check if the result is a valid number
                         System.out.println("The result is " + result);
+                    } else {
+                        calculationDone = false; // Modulus by zero occurred
                     }
                     break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    calculationDone = false;
-                    break;
+                // No default case needed here as choice is validated to be 1-6,
+                // and 6 is handled before the switch.
             }
 
-            if (calculationDone && choice >=1 && choice <=5) {
-                // Loop to ensure valid Y/N input
+            // Ask to perform another operation only if a valid operation was chosen and executed
+            if (choice >= 1 && choice <= 5 && calculationDone) {
                 while (true) {
                     System.out.print("Do you want to perform another operation (Y or N)? ");
                     performAnotherOperation = scanner.next().toUpperCase().charAt(0);
@@ -177,16 +155,19 @@ public class first {
                         System.out.println("Invalid input. Please enter 'Y' or 'N'.");
                     }
                 }
-            } else {
-                performAnotherOperation = 'N'; // If exit was chosen or an error occurred, don't ask to continue
-                 if(choice == 6) performAnotherOperation = 'N';
-                 else performAnotherOperation = 'Y'; // if invalid menu choice, allow retry of menu
+                if (performAnotherOperation == 'N') {
+                    System.out.println("Exiting calculator. Goodbye!");
+                    break;
+                }
+            } else if (choice == 6) { // If exit was chosen explicitly
+                performAnotherOperation = 'N';
+            } else { // If there was an issue like division by zero or invalid initial choice (though handled)
+                performAnotherOperation = 'Y'; // Allow to try again from menu
             }
-
 
         } while (performAnotherOperation == 'Y');
 
         scanner.close();
-        System.out.println("---------------------------\n");
+        System.out.println("---------------------------");
     }
 }
