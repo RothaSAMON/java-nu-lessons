@@ -6,7 +6,7 @@ public class Task5 {
 
     public static void playGame(Scanner scanner) {
         Random random = new Random();
-        int numberToGuess = random.nextInt(6) + 1; // Random number between 1 and 6
+        int numberToGuess = random.nextInt(6) + 1;
         int numberOfTries = 0;
         int guess;
         boolean hasGuessedCorrectly = false;
@@ -23,8 +23,6 @@ public class Task5 {
                     System.out.println("Invalid guess. Please enter a number between 1 and 6.");
                 } else if (guess < numberToGuess) {
                     System.out.println("Too low! The random number is " + numberToGuess + " (for testing, actual game wouldn't show this yet)");
-                    // In a real game, you might not reveal the number until they guess correctly or give up.
-                    // For this exercise, the example output shows the number.
                 } else if (guess > numberToGuess) {
                     System.out.println("Too high! The random number is " + numberToGuess + " (for testing, actual game wouldn't show this yet)");
                 } else {
@@ -33,7 +31,7 @@ public class Task5 {
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.next(); // Consume the invalid input
+                scanner.next();
             }
         }
     }

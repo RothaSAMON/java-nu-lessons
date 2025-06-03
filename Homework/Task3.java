@@ -3,15 +3,6 @@ import java.util.Scanner;
 
 public class Task3 {
 
-    /**
-     * Checks if a given password string is valid based on the following rules:
-     * 1. A password must have at least eight characters.
-     * 2. A password consists of only letters and digits.
-     * 3. A password must contain at least two digits.
-     *
-     * @param password The string to validate.
-     * @return true if the password is valid, false otherwise.
-     */
     public static boolean isValidPassword(String password) {
         if (password == null) {
             return false;

@@ -3,12 +3,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Task4 {
-
-    /**
-     * Displays an n-by-n matrix with random binary numbers (0 or 1).
-     *
-     * @param n The dimension of the square matrix.
-     */
     public static void displayRandomMatrix(int n) {
         if (n <= 0) {
             System.out.println("Matrix dimension must be positive.");
@@ -18,10 +12,9 @@ public class Task4 {
         Random random = new Random();
         int[][] matrix = new int[n][n];
 
-        // Populate the matrix with random 0s or 1s
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                matrix[i][j] = random.nextInt(2); // Generates 0 or 1
+                matrix[i][j] = random.nextInt(2); 
             }
         }
 
@@ -31,7 +24,7 @@ public class Task4 {
             for (int j = 0; j < n; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
-            System.out.println(); // New line after each row
+            System.out.println();
         }
     }
 
@@ -51,7 +44,7 @@ public class Task4 {
                 }
             } else {
                 System.out.println("Invalid input. Please enter an integer.");
-                scanner.next(); // Consume the invalid input
+                scanner.next();
             }
         }
 

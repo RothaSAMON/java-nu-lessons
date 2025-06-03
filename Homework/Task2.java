@@ -36,7 +36,7 @@ public class Task2 {
     public static double divide(double num1, double num2) {
         if (num2 == 0) {
             System.out.println("Error: Cannot divide by zero.");
-            return Double.NaN; // Not a Number
+            return Double.NaN;
         }
         return num1 / num2;
     }
@@ -45,7 +45,7 @@ public class Task2 {
     public static double modulus(double num1, double num2) {
         if (num2 == 0) {
             System.out.println("Error: Cannot perform modulus with zero divisor.");
-            return Double.NaN; // Not a Number
+            return Double.NaN;
         }
         return num1 % num2;
     }
@@ -71,7 +71,7 @@ public class Task2 {
                     }
                 } else {
                     System.out.println("Invalid input. Please enter a number.");
-                    scanner.next(); // consume the invalid input
+                    scanner.next();
                 }
             }
 
@@ -91,11 +91,11 @@ public class Task2 {
                     validInput = true;
                 } else {
                     System.out.println("Invalid input. Please enter a valid number.");
-                    scanner.next(); // consume the invalid input
+                    scanner.next();
                 }
             }
 
-            validInput = false; // Reset for the second number
+            validInput = false;
             // Get second number
             while (!validInput) {
                 System.out.print("Enter the second number: ");
@@ -104,12 +104,12 @@ public class Task2 {
                     validInput = true;
                 } else {
                     System.out.println("Invalid input. Please enter a valid number.");
-                    scanner.next(); // consume the invalid input
+                    scanner.next();
                 }
             }
 
             double result = 0;
-            boolean calculationDone = true; // Flag to track if a calculation was actually performed
+            boolean calculationDone = true;
 
             switch (choice) {
                 case 1:
@@ -126,25 +126,22 @@ public class Task2 {
                     break;
                 case 4:
                     result = divide(num1, num2);
-                    if (!Double.isNaN(result)) { // Check if the result is a valid number
+                    if (!Double.isNaN(result)) { 
                         System.out.println("The result is " + result);
                     } else {
-                        calculationDone = false; // Division by zero occurred
+                        calculationDone = false;
                     }
                     break;
                 case 5:
                     result = modulus(num1, num2);
-                    if (!Double.isNaN(result)) { // Check if the result is a valid number
+                    if (!Double.isNaN(result)) {
                         System.out.println("The result is " + result);
                     } else {
-                        calculationDone = false; // Modulus by zero occurred
+                        calculationDone = false;
                     }
                     break;
-                // No default case needed here as choice is validated to be 1-6,
-                // and 6 is handled before the switch.
             }
 
-            // Ask to perform another operation only if a valid operation was chosen and executed
             if (choice >= 1 && choice <= 5 && calculationDone) {
                 while (true) {
                     System.out.print("Do you want to perform another operation (Y or N)? ");
@@ -159,10 +156,10 @@ public class Task2 {
                     System.out.println("Exiting calculator. Goodbye!");
                     break;
                 }
-            } else if (choice == 6) { // If exit was chosen explicitly
+            } else if (choice == 6) {
                 performAnotherOperation = 'N';
-            } else { // If there was an issue like division by zero or invalid initial choice (though handled)
-                performAnotherOperation = 'Y'; // Allow to try again from menu
+            } else {
+                performAnotherOperation = 'Y';
             }
 
         } while (performAnotherOperation == 'Y');
